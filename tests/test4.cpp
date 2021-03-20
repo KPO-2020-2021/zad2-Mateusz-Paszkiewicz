@@ -5,16 +5,17 @@
 TEST_CASE("<< operator for WyrZespolone"){
 
     std::string expected = "(2-6i)+(1+1i)";
-    std::stringstream buffer;
+    std::stringstream buffer, tmp;
     std::streambuf* prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
 
     WyrazenieZesp test1;
 
-    buffer << "(2-6i)+(1+1i)";
-    buffer >> test1;
+    tmp << "(2-6i)+(1+1i)";
+    tmp >> test1;
+    tmp << test1;
 
     std::cout << test1;
-    std::string text = buffer.str();
+    std::string text = tmp.str();
     std::cout.rdbuf(prevcoutbuf);
 
     CHECK(text == expected);
