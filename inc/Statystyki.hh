@@ -1,13 +1,18 @@
-#ifndef WYRAZENIEZESP_HH
-#define WYRAZENIEZESP_HH
-
-
-
-#include "LZespolona.hh"
-#include "WyrazenieZesp.hh"
+#ifndef STATYSTYKI_HH
+#define STATYSTYKI_HH
 
 /*
- * Tu nalezy zdefiniowac funkcje, ktore definiuja model statystyki 
+ * Tu nalezy zdefiniowac funkcje, ktore definiuja model statystyki
  */
+
+ struct Stats{
+   int    correct_ans;   // Dobre odpowiedzi
+   int    current_ans_count;     // Wszystkie odpowiedzi
+   int    correct_ans_prctg;   // wynik procentowy
+ };
+
+Stats SetStats(bool, Stats);
+
+void display_stats(Stats);
 
 #endif

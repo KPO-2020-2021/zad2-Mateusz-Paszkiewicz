@@ -1,8 +1,8 @@
 #ifndef BAZATESTU_HH
 #define BAZATESTU_HH
 
-
 #include "WyrazenieZesp.hh"
+#include "Statystyki.hh"
 
 
 /*

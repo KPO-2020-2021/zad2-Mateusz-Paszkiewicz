@@ -1,9 +1,9 @@
+#include "LZespolona.hh"
+
 #ifndef WYRAZENIEZESP_HH
 #define WYRAZENIEZESP_HH
 
 
-
-#include "LZespolona.hh"
 
 
 /*!
@@ -22,14 +22,15 @@ struct WyrazenieZesp {
   LZespolona   Arg2;   // Drugi argument wyrazenia arytmetycznego
 };
 
+std::ostream& operator << (std::ostream &, WyrazenieZesp &);
+
+std::istream& operator >> (std::istream &, WyrazenieZesp &);
 
 /*
  * Funkcje ponizej nalezy zdefiniowac w module.
  *
  */
 
-
-void Wyswietl(WyrazenieZesp  WyrZ);
 LZespolona Oblicz(WyrazenieZesp  WyrZ);
 
 #endif
