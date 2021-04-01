@@ -2,6 +2,7 @@
 #include <cmath>
 #include "LZespolona.hh"
 
+#define PI 3.14159265
 #define MIN_DIFF 0.00001
 
 /*!
@@ -13,13 +14,9 @@
  *    True dla równych liczb zespolonych.
  */
 
-bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
-  /*if ((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
-    return true;
-  else
-    return false;*/
-  //alternatywnie, dla MIN_DIFF i wyników od użytkownika
-  if (abs(Skl1.re - Skl2.re) <= MIN_DIFF && abs(Skl1.im - Skl2.im) <= MIN_DIFF)
+bool  LZespolona::operator == (const LZespolona  &Skl) const {
+
+  if (abs(this->re - Skl.re) <= MIN_DIFF && abs(this->im - Skl.im) <= MIN_DIFF)
     return true;
   else
     return false;
@@ -33,12 +30,26 @@ bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2){
+ LZespolona  LZespolona::operator + (const LZespolona &Skl){
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+  Wynik.re = Skl.re + this->re;
+  Wynik.im = Skl.im + this->im;
   return Wynik;
+}
+
+LZespolona  LZespolona::operator += (const LZespolona &Skl){
+
+ this->re+=Skl.re;
+ this->im+=Skl.im;
+ return (*this);
+}
+
+LZespolona  LZespolona::operator /= (LZespolona &Skl){
+
+ (*this)=(*this)/Skl;
+
+ return (*this);
 }
 
 /*!
@@ -49,11 +60,11 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2){
  * Zwraca:
  *    Roznice dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2){
+LZespolona  LZespolona::operator - (const LZespolona &Skl){
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  Wynik.re = this->re - Skl.re;
+  Wynik.im = this->im - Skl.im;
   return Wynik;
 }
 
@@ -65,11 +76,11 @@ LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2){
  * Zwraca:
  *    Iloczyn dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
+LZespolona  LZespolona::operator * (const LZespolona  &Skl){
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re * Skl2.re - Skl1.im * Skl2.im;
-  Wynik.im = Skl1.re * Skl2.im + Skl1.im * Skl2.re;
+  Wynik.re = this->re * Skl.re - this->im * Skl.im;
+  Wynik.im = this->re * Skl.im + this->im * Skl.re;
   return Wynik;
 }
 
@@ -82,11 +93,11 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
  * Zwraca:
  *    Wynik dzielenia dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator / (LZespolona  Skl1,  double  Skl2){
+LZespolona  LZespolona::operator / (const double  &Skl2){
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re / Skl2;
-  Wynik.im = Skl1.im / Skl2;
+  Wynik.re = this->re / Skl2;
+  Wynik.im = this->im / Skl2;
   return Wynik;
 }
 
@@ -97,12 +108,12 @@ LZespolona  operator / (LZespolona  Skl1,  double  Skl2){
  * Zwraca:
  *    Sprzezenie liczby zesp. podanej jako argument
  */
-LZespolona Sprzezenie(LZespolona Skl1)
+LZespolona LZespolona::Sprzezenie()
 {
   LZespolona Wynik;
 
-  Wynik.re=Skl1.re;
-  Wynik.im=-Skl1.im;
+  Wynik.re=this->re;
+  Wynik.im=-this->im;
 
   return Wynik;
 }
@@ -114,18 +125,18 @@ LZespolona Sprzezenie(LZespolona Skl1)
  * Zwraca:
  *    modul parametru podniesiony do kwadratu
  */
-double ModulDoKwadratu(LZespolona Skl1)
+double LZespolona::ModulDoKwadratu()
 {
   double Wynik;
 
-  Wynik = (Skl1.re*Skl1.re)+(Skl1.im*Skl1.im);
+  Wynik = (this->re*this->re)+(this->im*this->im);
   return Wynik;
 }
 
-LZespolona  operator / (LZespolona  Skl1,  LZespolona Skl2){
+LZespolona  LZespolona::operator / (LZespolona  &Skl){
   LZespolona  Wynik;
 
-  Wynik = Skl1*Sprzezenie(Skl2)/ModulDoKwadratu(Skl2);
+  Wynik = *this*Skl.Sprzezenie()/Skl.ModulDoKwadratu();
   return Wynik;
 }
 
@@ -169,4 +180,37 @@ std::istream& operator >> (std::istream &StrmWej, LZespolona &LZesp)
     return StrmWej;
   }
   return StrmWej;
+}
+
+
+double LZespolona::arg()
+{
+  double arg;
+
+  if(this->re==0 && this->im==0)
+    return NAN;
+
+  if(this->re!=0 && this->im!=0)
+  {
+    if(this->re>0)
+      arg=atan2(this->im, this->re);
+    else
+      arg=atan2(this->im, this->re)+PI;
+  }
+  if(this->re==0)
+  {
+    if(this->im>0)
+      arg=PI/2;
+    else
+      arg=-PI/2;
+  if(this->im==0)
+    {
+    if(this->re>0)
+      arg=0;
+    else
+      arg=PI;
+    }
+  }
+
+  return arg; //arg w radianach
 }

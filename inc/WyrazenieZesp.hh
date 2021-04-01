@@ -20,17 +20,12 @@ struct WyrazenieZesp {
   LZespolona   Arg1;   // Pierwszy argument wyrazenia arytmetycznego
   Operator     Op;     // Opertor wyrazenia arytmetycznego
   LZespolona   Arg2;   // Drugi argument wyrazenia arytmetycznego
+
+  LZespolona Oblicz();
 };
 
 std::ostream& operator << (std::ostream &, WyrazenieZesp &);
 
 std::istream& operator >> (std::istream &, WyrazenieZesp &);
-
-/*
- * Funkcje ponizej nalezy zdefiniowac w module.
- *
- */
-
-LZespolona Oblicz(WyrazenieZesp  WyrZ);
 
 #endif

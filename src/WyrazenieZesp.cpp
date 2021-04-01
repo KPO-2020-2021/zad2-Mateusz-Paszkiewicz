@@ -47,17 +47,17 @@
  }
 
 
-LZespolona Oblicz(WyrazenieZesp Wyrazenie)
+LZespolona WyrazenieZesp::Oblicz()
 {
   LZespolona Wynik;
 
-  if(Wyrazenie.Op==Op_Dodaj)
-    Wynik=Wyrazenie.Arg1+Wyrazenie.Arg2;
-  if(Wyrazenie.Op==Op_Odejmij)
-    Wynik=Wyrazenie.Arg1-Wyrazenie.Arg2;
-  if(Wyrazenie.Op==Op_Mnoz)
-    Wynik=Wyrazenie.Arg1*Wyrazenie.Arg2;
-  if(Wyrazenie.Op==Op_Dziel)
-    Wynik=Wyrazenie.Arg1/Wyrazenie.Arg2;
+  if(this->Op==Op_Dodaj)
+    Wynik=this->Arg1+this->Arg2;
+  if(this->Op==Op_Odejmij)
+    Wynik=this->Arg1-this->Arg2;
+  if(this->Op==Op_Mnoz)
+    Wynik=this->Arg1*this->Arg2;
+  if(this->Op==Op_Dziel)
+    Wynik=this->Arg1/this->Arg2;
   return Wynik;
 }

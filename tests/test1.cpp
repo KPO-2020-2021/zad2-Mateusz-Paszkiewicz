@@ -3,21 +3,59 @@
 #include "LZespolona.hh"
 
 TEST_CASE("test LZespolona Suma"){
-    LZespolona x, y, z;
+  LZespolona x, y, z;
 
-    x.re = 1;
-    x.im = 1;
+  x.re = 1;
+  x.im = 1;
 
-    y.re = 1;
-    y.im = -3;
+  y.re = 1;
+  y.im = -3;
 
-    z.re = 2;
-    z.im = -2;
+  z.re = 2;
+  z.im = -2;
+
 
 CHECK(x+y == z);
+
+  x.re = 0;
+  x.im = 0;
+
+  y.re = 0;
+  y.im = 0;
+
+  z.re = 0;
+  z.im = 0;
+
+CHECK(x+y == z);
+
+  x.re = 0.0;
+  x.im = 0.0;
+
+  y.re = 0.0;
+  y.im = 0.0;
+
+  z.re = 0.0;
+  z.im = 0.0;
+
+CHECK(x+y == z);
+
 }
 
-TEST_CASE("test LZespolona Odejmowanie"){
+TEST_CASE("test LZespolona rownosc"){
+    LZespolona x, y;
+
+    x.re = 0.00001;
+    x.im = 0.00001;
+
+    y.re = 0.00001;
+    y.im = 0.00001;
+
+
+
+CHECK(x == y);
+}
+
+TEST_CASE("test LZespolona Odejmowanie and MIN_DIFF"){
     LZespolona x, y, z, c;
 
     x.re = 1;
@@ -43,16 +81,40 @@ TEST_CASE("test LZespolona Mnozenie"){
     LZespolona x, y, z;
 
 
-    x.re = 2;
-    x.im = 1;
+  x.re = 2;
+  x.im = 1;
 
-    y.re = 2;
-    y.im = 2;
+  y.re = 2;
+  y.im = 2;
 
-    z.re = 2;
-    z.im = 6;
+  z.re = 2;
+  z.im = 6;
 
 CHECK(x*y == z);
+
+  x.re = 99;
+  x.im = -99;
+
+  y.re = 0;
+  y.im = 0;
+
+  z.re = 0;
+  z.im = 0;
+
+CHECK(x*y == z);
+
+
+  x.re = 50;
+  x.im = -50;
+
+  y.re = 1;
+  y.im = 1;
+
+  z.re = 100;
+  z.im = 0;
+
+CHECK(x*y == z);
+
 }
 
 TEST_CASE("test LZespolona dzielenie"){

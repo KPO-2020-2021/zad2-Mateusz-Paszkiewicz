@@ -12,8 +12,8 @@ TEST_CASE("test LZespolona Modul i Sprzezenie"){
   y.re=2;
   y.im=-1;
 
-CHECK(Sprzezenie(x)==y);
-CHECK(ModulDoKwadratu(x)==5);
+CHECK(x.Sprzezenie()==y);
+CHECK(x.ModulDoKwadratu()==5);
 }
 
 TEST_CASE("test LZespolona Modul i Sprzezenie dla 0i"){
@@ -23,6 +23,6 @@ TEST_CASE("test LZespolona Modul i Sprzezenie dla 0i"){
   x.re=5;
   x.im=0;
 
-  CHECK(Sprzezenie(x)==x);
+  CHECK(x.Sprzezenie()==x);
 
 }

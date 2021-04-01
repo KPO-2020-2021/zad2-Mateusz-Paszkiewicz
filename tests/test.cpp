@@ -2,7 +2,7 @@
 #include "./doctest/doctest.h"
 #include "LZespolona.hh"
 
-TEST_CASE("<< operator for LZespolona"){
+TEST_CASE("test for << operator for LZespolona"){
 
     std::string expected = "(2-6i)";
     std::stringstream buffer;

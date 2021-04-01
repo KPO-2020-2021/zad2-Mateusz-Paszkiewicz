@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 
     if(err_count!=3)
     {
-      if(User_Ans==Oblicz(WyrZ_PytanieTestowe))
+      if(User_Ans==WyrZ_PytanieTestowe.Oblicz())
       {
         Curr_stats=SetStats(true, Curr_stats);
         std::cout<<"Odpowiedz poprawna"<< "             ";
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
       else
       {
         Curr_stats=SetStats(false, Curr_stats);
-        LZespolona corr_val=Oblicz(WyrZ_PytanieTestowe);
+        LZespolona corr_val=WyrZ_PytanieTestowe.Oblicz();
         std::cout << std::endl;
         std::cout << "Odpowiedz niepoprawna"<<"             ";
         display_stats(Curr_stats);
@@ -110,12 +110,17 @@ int main(int argc, char **argv)
   std::cout << std::endl;
   display_stats(Curr_stats);
 
-  LZespolona chuj,chujek;
-  chujek.re=2;
-  chujek.im=-1;
-  chuj.re=2;
-  chuj.im=2;
-  chuj=chuj/chujek;
-  std::cout<<ModulDoKwadratu(chujek);
+
+  LZespolona a1, a2;
+
+  a1.re=1;
+  a1.im=5;
+
+  a2.re=1;
+  a2.im=5;
+
+  a1/=a2;
+
+  std::cout<<a1;
 
 }
